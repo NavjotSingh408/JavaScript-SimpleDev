@@ -49,7 +49,7 @@
 let productsHtml = "";
 
 products.forEach((product) => {
-    productsHtml += `
+  productsHtml += `
        <div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
@@ -94,11 +94,20 @@ products.forEach((product) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary js-add-to-cart">
             Add to Cart
           </button>
         </div>    
-    `
-})
+    `;
+});
 
-document.querySelector('.products-grid').innerHTML = productsHtml;
+//1. render products on page.
+document.querySelector(".products-grid").innerHTML = productsHtml;
+//2. add Listener to buttons.
+const addToCartBtns = document.querySelectorAll(".js-add-to-cart");
+addToCartBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    cart++;
+    document.querySelector(".js-cart-count").innerHTML = cart;
+  });
+});
